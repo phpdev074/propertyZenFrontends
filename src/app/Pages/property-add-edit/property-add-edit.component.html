@@ -1,0 +1,100 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}"></ngx-loading>
+
+<div class="wrapper">
+  <app-sidebar></app-sidebar>
+  <app-header></app-header>
+
+  <div class="page-wrapper">
+    <div class="page-content">
+      <!--breadcrumb-->
+      <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-4">
+        <div class="breadcrumb-title pe-3">Property</div>
+        <div class="ps-3">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0 p-0">
+              <li class="breadcrumb-item"><a href="javascript:void(0);" routerLink="/dashboard"><i class="bx bx-home-alt"></i></a></li>
+              <li class="breadcrumb-item active" aria-current="page">Add Property</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Form Section -->
+      <div class="row">
+        <div class="col-xl-7 mx-auto">
+          <div class="card border-top border-0 border-4 border-brand">
+            <div class="card-body p-5">
+              <div class="card-title d-flex align-items-center">
+                <div></div>
+                <h5 class="mb-0 brand-color">Create New Property</h5>
+              </div>
+              <hr>
+
+              <form [formGroup]="propertyData" class="row" (ngSubmit)="onSubmit()">
+                <!-- Name of the Property -->
+                <div class="col-12">
+                  <div class="form-group pb-4">
+                    <label class="form-label m-0" for="PropertyName">Name of the Property</label>
+                    <input type="text" class="form-control" id="PropertyName" formControlName="PropertyName" [ngClass]="{ 'is-invalid': submitted && f.PropertyName.errors }">
+                    <div *ngIf="submitted && f.PropertyName.errors" class="errormessage orange-color">
+                      Name of the Property is required
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Address -->
+                <div class="col-12">
+                  <div class="form-group pb-4">
+                    <label class="form-label m-0" for="address">Enter Address</label>
+                    <input type="text" class="form-control" id="address" formControlName="address" [ngClass]="{ 'is-invalid': submitted && f.address.errors }">
+                    <div *ngIf="submitted && f.address.errors" class="errormessage orange-color">
+                      Address is required
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Select Manager -->
+                <div class="col-12">
+                    <div class="form-group pb-4">
+                      <label class="form-label m-0" for="manager">Select Manager</label>
+
+                      <select class="form-control" formControlName="managerId" [ngClass]="{ 'is-invalid': submitted && f.managerId.errors }"
+                                  >
+                                  <option value="" disabled selected>Select a property</option>
+                                  <option *ngFor="let manager of manaerList" [value]="manager._id">
+                                    {{ manager.firstName +' '+manager.lastName }}
+                                  </option>
+                                </select>
+                      <div *ngIf="submitted && f.managerId.errors" class="errormessage orange-color">
+                        Manager selection is required
+                      </div>
+                    </div>
+                  </div>
+
+                   <!-- Image -->
+                <div class="col-12">
+                    <div class="form-group pb-4">
+                      <input type="file" class="form-control" id="image" formControlName="image" [ngClass]="{ 'is-invalid': submitted && f.image.errors }">
+                      <div *ngIf="submitted && f.image.errors" class="errormessage orange-color">
+                        Image is required
+                      </div>
+                    </div>
+                  </div>
+
+                <!-- Action Buttons -->
+                <div class="col-12 pt-4 d-flex justify-content-center">
+                  <button type="button" class="btn custom-btn brand-btn px-5 me-5" (click)="service.back()">Back</button>
+                  <button type="submit" class="btn custom-btn brandsecundary-btn px-5">Next</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--end row-->
+
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>
