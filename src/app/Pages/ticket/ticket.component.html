@@ -80,9 +80,9 @@
                                 <tbody>
                                     <tr *ngFor="let item of dataListing | paginate: { itemsPerPage: pageLimit, currentPage: p, totalItems: totalCount}; let i = index ">
                                         <td scope="row">{{(pageLimit * (p - 1)) + i + 1 }}</td>
-                                        <td>{{item.ticketNumber}}</td>
-                                        <td>{{item.parentData.issueTypeN}}</td>
-                                        <td>{{item.parentData.name}}</td>
+                                        <td>{{item?.ticketNumber}}</td>
+                                        <td>{{item?.parentData?.issueTypeN}}</td>
+                                        <td>{{item?.parentData?.name}}</td>
                                         <td>
                                             <span class="badge bg-info" *ngIf="item.status=='New'">{{item.status}}</span>
                                             <span class="badge bg-info" *ngIf="item.status=='Inspected'">{{item.status}}</span>

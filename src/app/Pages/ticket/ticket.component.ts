@@ -46,8 +46,9 @@ export class TicketComponent {
       this.service.GetApi(url).subscribe(((response:any)=>{
         if(response.success ==1) {  
           var self =this;            
+          console.log(response.data,'===????>>>>response.data')
           response.data.filter((el:any)=>{
-            if(el.parentData.issueType==0){
+            if(el?.parentData?.issueType==0){
               el.parentData.issueTypeN='Outside';
             } else {
               el.parentData.issueTypeN='Inside';

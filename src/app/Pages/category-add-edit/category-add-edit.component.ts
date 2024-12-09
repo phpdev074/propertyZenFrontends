@@ -48,14 +48,14 @@ export class CategoryAddEditComponent {
       let userdetail:any = this.categoryData;
       var url="";
       let formdata= new FormData();
-      if(this.imgURL == ''){
-        this.service.dangerAlert('Please upload the image');
-        return
-      } else {
-        if(this.selectedFile!=''){
-          formdata.append('icon',this.selectedFile);
-        }
-      }
+      // if(this.imgURL == ''){
+      //   this.service.dangerAlert('Please upload the image');
+      //   return
+      // } else {
+      //   if(this.selectedFile!=''){
+      //     formdata.append('icon',this.selectedFile);
+      //   }
+      // }
      
       if(userdetail.valid){
         this.loading=true;      
